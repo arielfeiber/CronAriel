@@ -6,12 +6,13 @@
     @includeIf('Painel/Layout/header')
     @includeIf('Painel/Layout/sidebar_lateral')
     <div class="content-wrapper">
-        <div class="content-header">
+        <div class="content-header"
+        >
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1 class="m-0 text-dark">
-                            Novo Usuário
+                            Editar Servidor
                         </h1>
                     </div>
                     <div class="col-sm-6">
@@ -21,7 +22,7 @@
                             @if(isset($urlAtual))
                                 <li class="breadcrumb-item active">{{$urlAtual}}</li
                             @else
-                                <li class="breadcrumb-item active">Novo Usuario</li
+                                <li class="breadcrumb-item active">Editar Servidor</li
                             @endif
                         </ol>
                     </div>
@@ -29,41 +30,52 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-8 offset-sm-2">
-                <h1 class="display-3">Update a contact</h1>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Editar dados</h3>
+                            </div>
 
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <br />
-                @endif
-                <form method="post" action="{{ route('usuarios.update', $usuarios->id) }}">
-                    @method('PATCH')
-                    @csrf
-                    <div class="form-group">
 
-                        <label for="name">Nome:</label>
-                        <input type="text" class="form-control" name="name" value={{ $usuarios->name }} />
+                            <form role="form" id="novoServidor" method="post" action="{{ route('servidores.update', ['id' => $servidor->id]) }}">
+                                @method('PATCH')
+                                @csrf
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="ip">IP</label>
+                                        <input type="text" name="ip" value={{ $servidor->ip }} class="form-control" placeholder="IP">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Sistema Operacional</label>
+                                        <select type="text" for="so" name="so" value={{ $servidor->so }} class="form-control">
+                                            <option>Ubuntu</option>
+                                            <option>Mint</option>
+                                            <option>Debian</option>
+                                            <option>Fedora</option>
+                                            <option>OpenSuse</option>
+                                            <option>Red Hat Enterprise Linux</option>
+                                            <option>CentOS</option>
+                                            <option>Arch Linux</option>
+                                            <option>Gentoo</option>
+                                            <option>Mageia</option>
+                                            <option>Backtrack / Kali Linux</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Salvar</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="text" class="form-control" name="email" value={{ $usuarios->email }} />
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Senha:</label>
-                        <input type="password" class="form-control" name="job_title" value={{ $usuarios->password }} />
-                    </div>
-                    <button type="submit" class="btn btn-primary">Atualizar</button>
-                </form>
+                </div>
             </div>
-        </div>
+        </section>
 
     </div>
     @includeIf('Painel/Layout/footer')

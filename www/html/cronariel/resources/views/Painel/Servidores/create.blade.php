@@ -42,27 +42,33 @@
                             </div>
 
 
-                            <form role="form" method="post" action="{{ route('servidores.store') }}">
+                            <form role="form" id="novoServidor" method="post" action="{{ route('servidores.store') }}">
                                 @csrf
                                 <div class="card-body">
+
+
                                     <div class="form-group">
+
                                         <label for="ip">IP</label>
-                                        <input type="text" name="ip" class="form-control" placeholder="IP">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-laptop"></i></span>
+                                            </div>
+                                            <input type="text" name="ip" class="form-control" data-inputmask="'alias': 'ip'" data-mask>
+                                        </div>
+
+
                                     </div>
+
+
                                     <div class="form-group">
                                         <label>Sistema Operacional</label>
                                         <select type="text" for="so" name="so" class="form-control">
                                             <option>Ubuntu</option>
-                                            <option>Mint</option>
+                                            <option>RHEL</option>
+                                            <option>SUSE</option>
                                             <option>Debian</option>
-                                            <option>Fedora</option>
-                                            <option>OpenSuse</option>
-                                            <option>Red Hat Enterprise Linux</option>
                                             <option>CentOS</option>
-                                            <option>Arch Linux</option>
-                                            <option>Gentoo</option>
-                                            <option>Mageia</option>
-                                            <option>Backtrack / Kali Linux</option>
                                         </select>
                                     </div>
                                 </div>

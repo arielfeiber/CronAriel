@@ -14,10 +14,9 @@ class CriarTabelaServidores extends Migration
     public function up()
     {
         Schema::create('servidores', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('so');
             $table->string('ip')->unique();
-            $table->timestamp('server_verified_at')->nullable();
             $table->timestamps();
         });
     }

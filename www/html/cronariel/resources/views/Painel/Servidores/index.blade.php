@@ -12,7 +12,6 @@
                     <div class="col-sm-6">
 
 
-
                         @if(session()->get('success'))
                             <div class="alert alert-success">
                                 {{ session()->get('success') }}
@@ -20,9 +19,8 @@
                         @endif
 
 
-
                         <h1 class="m-0 text-dark">
-                            Servidores
+                            Centralização de Servidores
                         </h1>
                     </div>
                     <div class="col-sm-6">
@@ -32,7 +30,7 @@
                             @if(isset($urlAtual))
                                 <li class="breadcrumb-item active">{{$urlAtual}}</li
                             @else
-                                <li class="breadcrumb-item active">Servidores</li
+                                <li class="breadcrumb-item active">Centralização de Servidores</li
                             @endif
                         </ol>
                     </div>
@@ -40,76 +38,34 @@
             </div>
         </div>
 
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
 
+                    @foreach($servidores as $servidor)
 
-
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Fixed Header Table</h3>
-
-                        <div class="card-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                                </div>
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-info elevation-1"><i class="fab fa-linux"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Sistema Operacional <small>{{$servidor->so}}</small></span>
+                                <span class="info-box-number">IP <small>{{$servidor->ip}}</small></span>
+                                <a href="{{ route('jobs.index', ['id' => $servidor->id]) }}" class="small-box-footer">Acessar jobs <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
-                    <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0" style="height: 600px;">
-                        <table class="table table-head-fixed text-nowrap">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>IP</th>
-                                <th>Data de cadastro</th>
-                                <th>Sistema Operacional</th>
-                                <th>Configurações</th>
-                            </tr>
-                            </thead>
+
+                    @endforeach
 
 
-                            <tbody>
-                            <tr>
-                                <td>asdasd</td>
-                                <td>asdasdas</td>
-                                <td>asdasdasd</td>
-                                <td>asdasdas</td>
-                                <td>
-                                    <a href="#" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <a href="#" method="post" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <a href="#" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <a href="#" method="post" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.card-body -->
+                    <!-- /.col -->
                 </div>
-                <!-- /.card -->
-            </div>
-        </div>
+                <!-- /.row -->
 
-        <a href="{{route ('Painel.Servidores.create')}}" type="button" class="btn btn-outline-success">Adicionar novo servidor</a>
+
+            </div><!--/. container-fluid -->
+        </section>
+
 
     </div>
     @includeIf('Painel/Layout/footer')

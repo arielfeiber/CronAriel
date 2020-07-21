@@ -11,7 +11,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1 class="m-0 text-dark">
-                            Novo Usuário
+                            Editar Usuário
                         </h1>
                     </div>
                     <div class="col-sm-6">
@@ -21,7 +21,7 @@
                             @if(isset($urlAtual))
                                 <li class="breadcrumb-item active">{{$urlAtual}}</li
                             @else
-                                <li class="breadcrumb-item active">Novo Usuario</li
+                                <li class="breadcrumb-item active">Editar Usuário</li
                             @endif
                         </ol>
                     </div>
@@ -29,42 +29,55 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-8 offset-sm-2">
-                <h1 class="display-3">Update a contact</h1>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Editar Usuário</h3>
+                            </div>
+                            <form class="form-horizontal" id="userForm" method="post" action="{{route('usuarios.update', ['id' => $usuario->id]) }}">
+                                @method('PATCH')
+                                @csrf
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label for="name" class="col-sm-2 col-form-label">Nome Completo</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="name" value={{ $usuario->name }} name="name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="email" class="col-sm-2 col-form-label">E-mail</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="email" value={{ $usuario->email }} name="email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="password" class="col-sm-2 col-form-label">Senha</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="password" name="password"
+                                                   placeholder="Senha">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="password_again" class="col-sm-2 col-form-label">Confirmar Senha</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="password_again" name="password_again"
+                                                   placeholder="Senha">
+                                        </div>
+                                    </div>
 
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-info">Salvar</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <br />
-                @endif
-                <form method="post" action="{{ route('usuarios.update', $usuarios->id) }}">
-                    @method('PATCH')
-                    @csrf
-                    <div class="form-group">
-
-                        <label for="name">Nome:</label>
-                        <input type="text" class="form-control" name="name" value={{ $usuarios->name }} />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="text" class="form-control" name="email" value={{ $usuarios->email }} />
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Senha:</label>
-                        <input type="password" class="form-control" name="job_title" value={{ $usuarios->password }} />
-                    </div>
-                    <button type="submit" class="btn btn-primary">Atualizar</button>
-                </form>
+                </div>
             </div>
-        </div>
-
+        </section>
     </div>
     @includeIf('Painel/Layout/footer')
 </div>

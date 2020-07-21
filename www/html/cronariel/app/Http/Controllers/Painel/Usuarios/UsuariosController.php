@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Painel\Usuarios;
 
 
+use App\Servidores;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UsuariosController extends Controller
 {
@@ -19,35 +21,40 @@ class UsuariosController extends Controller
 
     public function index()
     {
-        $title = 'Painel de usuários';
-        $usuarios = $this->model->where('id', '!=', 0)->get();
-        return view('Painel.Usuarios.index', compact('title', 'usuarios'));
+        $usuarios = User::all();
+        return view('Painel.Usuarios.index', ['usuarios' => $usuarios]);
+
+
+        //$title = 'Painel de usuários';
+        //$usuarios = $this->model->where('id', '!=', 0)->get();
+        //return view('Painel.Usuarios.index', compact('title', 'usuarios'));
     }
 
 
     public function create()
     {
-       $user = Auth()->User();
+        $user = Auth()->User();
         return view('Painel.Usuarios.create', compact('user'));
-       // return view('Painel.Usuarios.create');
+
     }
 
 
     public function store(Request $request)
     {
+
         $request->validate([
-            'name'=>'required',
-            'email'=>'required',
-            'password'=>'required'
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
         ]);
 
-        $user = new User([
+        $user = User::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
-            'password' => $request->get('password'),
+            'password' => Hash::make($request['password']),
         ]);
         $user->save();
-        return redirect('Painel/Usuarios')->with('success', 'Usuário salvo!');
+        return redirect('Painel/Usuarios');
     }
 
 
@@ -59,34 +66,31 @@ class UsuariosController extends Controller
 
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('usuarios.edit', compact('user'));
+        $usuario = User::find($id);
+        return view('Painel.Usuarios.edit', compact('usuario'));
     }
 
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required',
-            'email'=>'required',
-            'password'=>'required'
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
         ]);
-
-        $user = User::find($id);
-        $user->name =  $request->get('name');
-        $user->email = $request->get('email');
-        $user->password = $request->get('password');
-        $user->save();
-
-        return redirect('Painel/Usuarios')->with('success', 'Usuário atualizado!');
+        $usuario = User::find($id);
+        $usuario->name = $request->get('name');
+        $usuario->email = $request->get('email');
+        $usuario->password = Hash::make($request['password']);
+        $usuario->save();
+        return redirect('Painel/Usuarios');
     }
 
 
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
 
-        return redirect('Painel.Usuarios.index')->with('success', 'Usuário excluído!');
+        $usuarios = User::where('id', $id)->delete();
+        return redirect('Painel/Usuarios');
     }
 }

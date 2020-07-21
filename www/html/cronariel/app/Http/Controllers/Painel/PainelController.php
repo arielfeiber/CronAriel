@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Painel;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PainelController extends Controller
 {
@@ -41,14 +42,8 @@ class PainelController extends Controller
 
     public function viewAlertas()
     {
-        $user = Auth()->User();
-        return view('Painel.Alertas.index', compact('user'));
-    }
-
-    public function viewServidores()
-    {
-        $user = Auth()->User();
-        return view('Painel.Servidores.index', compact('user'));
+        $alertas = DB::select('select * from alertas');
+        return view('Painel.Alertas.index', ['alertas' => $alertas]);
     }
 
 

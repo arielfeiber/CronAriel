@@ -21,7 +21,7 @@
                             @if(isset($urlAtual))
                                 <li class="breadcrumb-item active">{{$urlAtual}}</li
                             @else
-                                <li class="breadcrumb-item active">Novo Usuario</li
+                                <li class="breadcrumb-item active">Novo Usuário</li
                             @endif
                         </ol>
                     </div>
@@ -29,44 +29,56 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-8 offset-sm-2">
-                <div>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div><br />
-                    @endif
-                    <form method="post" action="{{ route('usuarios.store') }}">
-                        @csrf
-                        <div class="form-group">
-                            <label for="name">Nome Completo:</label>
-                            <input type="text" class="form-control" name="name"/>
-                        </div>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Cadastro de Usuário</h3>
+                            </div>
+                            <form class="form-horizontal" id="userForm" method="post" action="{{ route('usuarios.store') }}">
+                                @csrf
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label for="name" class="col-sm-2 col-form-label">Nome Completo</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                   placeholder="Nome Completo">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="email" class="col-sm-2 col-form-label">E-mail</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="email" name="email"
+                                                   placeholder="E-mail">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="password" class="col-sm-2 col-form-label">Senha</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="password" name="password"
+                                                   placeholder="Senha">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="password_again" class="col-sm-2 col-form-label">Confirmar Senha</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="password_again" name="password_again"
+                                                   placeholder="Senha">
+                                        </div>
+                                    </div>
 
-
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="text" class="form-control" name="email"/>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-info">Salvar</button>
+                                </div>
+                            </form>
                         </div>
-
-                        <div class="form-group">
-                            <label for="password">Senha:</label>
-                            <input type="password" class="form-control" name="password"/>
-                        </div>
-
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
-
+        </section>
     </div>
     @includeIf('Painel/Layout/footer')
 </div>

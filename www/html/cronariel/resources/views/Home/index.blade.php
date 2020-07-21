@@ -86,7 +86,9 @@
 
                 <div class="links">
                     <a href="https://github.com/arielfeiber/CronAriel">GitHub</a>
-                    <a href=" https://github.com/arielfeiber/CronAriel/blob/master/README.md">Documentação</a>
+                    <a href="https://github.com/arielfeiber/CronAriel/blob/master/README.md">Instalação</a>
+                    <a href="https://docs.google.com/document/d/1zDk4X4D4I3dzQT7qP6sg-SMsj4XzdKUKMkGjF4XuvjI/edit">Documentação</a>
+                    <a href="https://docs.google.com/presentation/d/1RXyzc5sfFUJ9i2p06vi3A71Br-1AkqRgP4mP6P2LUks/edit#slide=id.p1">Apresentação</a>
                 </div>
             </div>
         </div>

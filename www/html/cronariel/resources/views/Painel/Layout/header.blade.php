@@ -31,10 +31,11 @@
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">15</span>
+                @inject('alertas','App\Alerta')
+                <span class="badge badge-warning navbar-badge">{{$alertas->count()}}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">15 Alertas</span>
+                <span class="dropdown-item dropdown-header">{{$alertas->count()}} Alertas</span>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
                     <i class="fas fa-trash mr-2"></i> 10 novas modificações
@@ -51,7 +52,7 @@
                     <span class="float-right text-muted text-sm">2 days</span>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">Todas Notificações</a>
+                <a href="{{route('Painel.Alertas.index')}}" class="dropdown-item dropdown-footer">Todas Notificações</a>
             </div>
         </li>
     </ul>

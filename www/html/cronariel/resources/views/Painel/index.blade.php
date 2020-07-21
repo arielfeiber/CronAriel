@@ -37,16 +37,14 @@
                     <div class="small-box bg-warning">
                         <div class="inner">
 
-                            <h3>
-                                0
-
-                            </h3>
+                            @inject('alertas','App\Alerta')
+                            <h3>{{$alertas->count()}}</h3>
                             <p>Alertas</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-exclamation-triangle"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Verificar <i
+                        <a href="{{route('Painel.Alertas.index')}}" class="small-box-footer">Verificar <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -63,17 +61,14 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-
-                            <h3>
-                                0
-
-                            </h3>
+                            @inject('servidores','App\Servidores')
+                            <h3>{{$servidores->count()}}</h3>
                             <p>Servidores</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-server"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Gerenciar <i
+                        <a href="{{route('servidores.index')}}" class="small-box-footer">Visualizar<i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>

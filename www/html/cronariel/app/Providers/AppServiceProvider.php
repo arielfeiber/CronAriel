@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,8 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //Padronizar para 191 caracteres
-
-       // Schema::defaultStringLength( length: 191);
+        Carbon::setlocale(LC_TIME, 'pt_BR');
     }
 }
